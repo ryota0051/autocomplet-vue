@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AutoComplete msg="Welcome to Your Vue.js App" />
+    <AutoComplete v-model="text" />
   </div>
 </template>
 
@@ -11,6 +11,11 @@ export default {
   name: "App",
   components: {
     AutoComplete,
+  },
+  data() {
+    return {
+      text: "",
+    }
   },
 }
 </script>

@@ -38,9 +38,14 @@ export default {
     return {
       options: ["option1", "option2", "option3"],
       cursor: -1,
-      value: "",
       showOptions: false,
     }
+  },
+  props: {
+    value: {
+      type: String,
+      default: "",
+    },
   },
   methods: {
     moveCursorDown() {
@@ -54,11 +59,11 @@ export default {
       }
     },
     select(text) {
-      this.value = text
+      this.$emit("input", text)
       this.showOptions = false
     },
     inputChange(text) {
-      this.value = text
+      this.$emit("input", text)
       this.cursor = -1
       if (!this.showOptions) {
         this.showOptions = true
