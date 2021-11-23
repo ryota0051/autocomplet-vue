@@ -14,6 +14,7 @@
       @input="inputChange($event.target.value)"
       @keydown="handleNav"
       @focus="showOptions = true"
+      @blur="onBlur"
     />
     <template v-if="showOptions">
       <template v-for="(filteredOption, index) in filteredOptions">
@@ -21,7 +22,7 @@
           :class="{ 'bg-gray-100': cursor === index }"
           class="hover:bg-gray-100 rounded-lg"
           :key="filteredOption + '_' + index"
-          @click="select(filteredOption)"
+          @mousedown="select(filteredOption)"
         >
           {{ filteredOption }}
         </div>
@@ -62,6 +63,9 @@ export default {
       if (!this.showOptions) {
         this.showOptions = true
       }
+    },
+    onBlur() {
+      this.showOptions = false
     },
     handleNav(e) {
       switch (e.key) {
